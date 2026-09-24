@@ -9,11 +9,17 @@ def main() -> None:
     try:
         driver.get(url)
         soup = BeautifulSoup(driver.page_source, "html.parser")
-        print(soup.prettify())
+        create_html_file(soup.prettify())
     except Exception as e:
         print(f"[Error] Failed to access {url}\n\n{e}")
     finally:
         driver.quit()
+
+
+def create_html_file(html: str) -> None:
+    with open("source.html", mode="w", encoding="utf-8") as file:
+        file.write(html)
+    return
 
 
 if __name__ == "__main__":
