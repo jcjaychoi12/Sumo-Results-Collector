@@ -21,9 +21,11 @@ def main() -> None:
     return
 
 
-def create_html_file(html: str) -> None:
+def create_html_file(html: str, filename: str = "source.html") -> None:
+    if filename[-5:] != ".html":
+        filename += ".html"
     try:
-        with open("source.html", mode="w", encoding="utf-8") as file:
+        with open(filename, mode="w", encoding="utf-8") as file:
             file.write(html)
         print("[Success] Created source.html")
     except Exception as e:
