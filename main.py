@@ -17,9 +17,14 @@ def main() -> None:
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "table")))
 
         soup: BeautifulSoup = BeautifulSoup(driver.page_source, "html.parser")
-        banzuke_table = soup.find("table")
+        banzuke_table = soup.find("tbody")
         for tag in banzuke_table.find_all(True):
             tag.attrs = {}
+
+        headers = []
+        for th in banzuke_table.find_all("th"):
+            headers.append(th.get_text(strip=True))
+        print(headers)
 
         create_html_file(banzuke_table.prettify())
     except Exception as e:
