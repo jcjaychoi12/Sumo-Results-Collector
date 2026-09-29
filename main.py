@@ -21,10 +21,20 @@ def main() -> None:
         for tag in banzuke_table.find_all(True):
             tag.attrs = {}
 
-        headers = []
+        headers_list = []
         for th in banzuke_table.find_all("th"):
-            headers.append(th.get_text(strip=True))
-        print(headers)
+            headers_list.append(th.get_text(strip=True))
+        headers = ",".join(headers_list)
+        
+        table_list = [headers]
+        for tr in banzuke_table.find_all("tr"):
+            row_list = []
+            for td in tr.find_all("td"):
+                row_list.append(td.get_text(separator="::", strip=True))
+            if len(row_list) != 0:
+                table_list.append(",".join(row_list))
+        table_csv = "\n".join(table_list)
+        print(table_csv)
 
         create_html_file(banzuke_table.prettify())
     except Exception as e:
