@@ -15,8 +15,12 @@ def main() -> None:
     try:
         driver.get(url)
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "table")))
+
         soup: BeautifulSoup = BeautifulSoup(driver.page_source, "html.parser")
         banzuke_table = soup.find("table")
+        for tag in banzuke_table.find_all(True):
+            tag.attrs = {}
+
         create_html_file(banzuke_table.prettify())
     except Exception as e:
         print(f"[Error] Failed to access {url}\n\n{e}")
