@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 def main() -> None:
     url: str = "https://www.sumo.or.jp/ResultBanzuke/table/"
     chrome_options: Options = Options()
-    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless=new")
     driver: WebDriver = webdriver.Chrome(options=chrome_options)
 
     try:
