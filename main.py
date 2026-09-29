@@ -31,7 +31,7 @@ def create_html_file(html: str, filename: str = "source.html") -> None:
     try:
         with open(filename, mode="w", encoding="utf-8") as file:
             file.write(html)
-        print(f"[Success] Created {filename}")
+        print(f"[Success] Created {filename}\n")
     except Exception as e:
         print(f"[Error] Failed to create {filename} file\n\n{e}")
     return
