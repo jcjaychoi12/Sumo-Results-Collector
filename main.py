@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pathlib import Path
 
 
 def main() -> None:
@@ -36,7 +37,7 @@ def main() -> None:
         table_csv = "\n".join(table_list)
         print(table_csv)
 
-        create_html_file(banzuke_table.prettify())
+        create_file(banzuke_table.prettify(), "source.html")
     except Exception as e:
         print(f"[Error] Failed to access {url}\n\n{e}")
     finally:
@@ -45,12 +46,11 @@ def main() -> None:
     return
 
 
-def create_html_file(html: str, filename: str = "source.html") -> None:
-    if filename[-5:] != ".html":
-        filename += ".html"
+def create_file(body: str, filename: str = "body.txt") -> None:
     try:
-        with open(filename, mode="w", encoding="utf-8") as file:
-            file.write(html)
+        local_file_path = (Path.cwd() / "localfiles") / filename
+        with open(local_file_path, mode="w", encoding="utf-8") as file:
+            file.write(body)
         print(f"[Success] Created {filename}\n")
     except Exception as e:
         print(f"[Error] Failed to create {filename} file\n\n{e}")
