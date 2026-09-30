@@ -36,9 +36,7 @@ def main() -> None:
             if len(row_list) != 0:
                 table_list.append(",".join(row_list))
         table_csv = "\n".join(table_list)
-        print(table_csv)
-
-        create_file(banzuke_table.prettify(), "source.html")
+        create_file(table_csv, "current_banzuke.csv")
     except Exception as e:
         print(f"[Error] Failed to access {url}\n\n{e}")
     finally:
