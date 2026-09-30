@@ -17,7 +17,11 @@ def get_basho_period(year, month) -> str:
     return ""
 
 
-def get_yearly_basho_period(year) -> list[str]:
+def get_year_basho_period(year) -> list[str]:
+    return []
+
+
+def get_current_year_basho_periods() -> list[str]:
     return []
 
 
