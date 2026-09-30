@@ -48,8 +48,10 @@ def main() -> None:
 
 def create_file(body: str, filename: str = "body.txt") -> None:
     try:
-        local_file_path = (Path.cwd() / "localfiles") / filename
-        with open(local_file_path, mode="w", encoding="utf-8") as file:
+        local_file_path = Path.cwd() / "localfiles"
+        local_file_path.mkdir(exist_ok=True)
+
+        with open(local_file_path / filename, mode="w", encoding="utf-8") as file:
             file.write(body)
         print(f"[Success] Created {filename}\n")
     except Exception as e:
