@@ -34,7 +34,10 @@ def get_basho_period(year: int, month: int) -> str:
 
 
 def get_year_basho_period(year) -> list[str]:
-    return []
+    year_list = []
+    for month in range(1, 12, 2):
+        year_list.append(get_basho_period(year, month))
+    return year_list
 
 
 def get_current_year_basho_periods() -> list[str]:
