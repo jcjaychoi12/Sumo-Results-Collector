@@ -41,7 +41,8 @@ def get_year_basho_period(year) -> list[str]:
 
 
 def get_current_year_basho_periods() -> list[str]:
-    return []
+    current_year = date.today().strftime("%Y")
+    return get_year_basho_period(current_year)
 
 
 if __name__ == "__main__":
