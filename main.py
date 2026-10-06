@@ -66,8 +66,19 @@ def convert_csv_banzuke(file_path: Path) -> list:
         reader = csv.DictReader(file)
         for row in reader:
             rank: str = row["番付"]
-            east: list = row["東"].split("::")
-            west: list = row["西"].split("::")
+            east: list = row["東"].split("::") # East doesn't need empty check as east slot is always filled
+            west: list = row["西"].split("::") if row["西"] != "" else []
+
+            if len(east) == 4:  # Status exists
+                pass
+            else:  # Status doesn't exist
+                pass
+
+            if len(west) > 0 and len(west) == 4:  # Status exists
+                pass
+            elif len(west) > 0:  # Status doesn't exist
+                pass
+
     return return_list
 
 
