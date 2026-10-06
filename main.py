@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from pathlib import Path
+import csv
 
 
 def main() -> None:
@@ -37,6 +38,7 @@ def main() -> None:
                 table_list.append(",".join(row_list))
         table_csv = "\n".join(table_list)
         create_file(table_csv, "current_banzuke.csv")
+        convert_csv_banzuke(Path(r"./localfiles/current_banzuke.csv"))
     except Exception as e:
         print(f"[Error] Failed to access {url}\n\n{e}")
     finally:
@@ -58,7 +60,12 @@ def create_file(body: str, filename: str = "body.txt") -> None:
     return
 
 
-def convert_csv_banzuke() -> dict:
+def convert_csv_banzuke(file_path: Path) -> dict:
+    with open(file_path, newline="", encoding="utf-8") as file:
+        reader = csv.reader(file)
+        headers = next(reader)
+        for row in reader:
+            print(row)
     return {}
 
 
