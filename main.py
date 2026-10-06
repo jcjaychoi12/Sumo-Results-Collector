@@ -60,12 +60,13 @@ def create_file(body: str, filename: str = "body.txt") -> None:
     return
 
 
-def convert_csv_banzuke(file_path: Path) -> dict:
+def convert_csv_banzuke(file_path: Path) -> list:
+    return_list: list = []  # {Shikona; Shushin; Heya; Status (opt)}
     with open(file_path, newline="", encoding="utf-8") as file:
         reader = csv.DictReader(file)
         for row in reader:
             print(row["東"])
-    return {}
+    return return_list
 
 
 if __name__ == "__main__":
