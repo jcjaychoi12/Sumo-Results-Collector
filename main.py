@@ -65,7 +65,9 @@ def convert_csv_banzuke(file_path: Path) -> list:
     with open(file_path, newline="", encoding="utf-8") as file:
         reader = csv.DictReader(file)
         for row in reader:
-            print(row["東"])
+            rank: str = row["番付"]
+            east: list = row["東"].split("::")
+            west: list = row["西"].split("::")
     return return_list
 
 
