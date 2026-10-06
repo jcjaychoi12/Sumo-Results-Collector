@@ -61,7 +61,7 @@ def create_file(body: str, filename: str = "body.txt") -> None:
 
 
 def convert_csv_banzuke(file_path: Path) -> list:
-    return_list: list = []  # {Shikona; Shushin; Heya; Status (opt)}
+    return_list: list = []  # {Shikona; Shushin; Heya; Rank; Status (opt)}
     with open(file_path, newline="", encoding="utf-8") as file:
         reader = csv.DictReader(file)
         for row in reader:
@@ -74,14 +74,16 @@ def convert_csv_banzuke(file_path: Path) -> list:
                     "status": east[0],
                     "shikona": east[1],
                     "shushin": east[2],
-                    "heya": east[3]
+                    "heya": east[3],
+                    "rank": "東" + rank
                 })
             else:  # Status doesn't exist
                 return_list.append({
                     "status": "",
                     "shikona": east[0],
                     "shushin": east[1],
-                    "heya": east[2]
+                    "heya": east[2],
+                    "rank": "東" + rank
                 })
 
             if len(west) > 0 and len(west) == 4:  # Status exists
@@ -89,14 +91,16 @@ def convert_csv_banzuke(file_path: Path) -> list:
                     "status": west[0],
                     "shikona": west[1],
                     "shushin": west[2],
-                    "heya": west[3]
+                    "heya": west[3],
+                    "rank": "西" + rank
                 })
             elif len(west) > 0:  # Status doesn't exist
                 return_list.append({
                     "status": "",
                     "shikona": west[0],
                     "shushin": west[1],
-                    "heya": west[2]
+                    "heya": west[2],
+                    "rank": "西" + rank
                 })
 
     return return_list
