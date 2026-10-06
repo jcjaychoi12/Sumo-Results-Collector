@@ -38,7 +38,7 @@ def main() -> None:
                 table_list.append(",".join(row_list))
         table_csv = "\n".join(table_list)
         create_file(table_csv, "current_banzuke.csv")
-        convert_csv_banzuke(Path(r"./localfiles/current_banzuke.csv"))
+        print(convert_csv_banzuke(Path(r"./localfiles/current_banzuke.csv")))
     except Exception as e:
         print(f"[Error] Failed to access {url}\n\n{e}")
     finally:
@@ -70,14 +70,34 @@ def convert_csv_banzuke(file_path: Path) -> list:
             west: list = row["西"].split("::") if row["西"] != "" else []
 
             if len(east) == 4:  # Status exists
-                pass
+                return_list.append({
+                    "status": east[0],
+                    "shikona": east[1],
+                    "shushin": east[2],
+                    "heya": east[3]
+                })
             else:  # Status doesn't exist
-                pass
+                return_list.append({
+                    "status": "",
+                    "shikona": east[0],
+                    "shushin": east[1],
+                    "heya": east[2]
+                })
 
             if len(west) > 0 and len(west) == 4:  # Status exists
-                pass
+                return_list.append({
+                    "status": west[0],
+                    "shikona": west[1],
+                    "shushin": west[2],
+                    "heya": west[3]
+                })
             elif len(west) > 0:  # Status doesn't exist
-                pass
+                return_list.append({
+                    "status": "",
+                    "shikona": west[0],
+                    "shushin": west[1],
+                    "heya": west[2]
+                })
 
     return return_list
 
