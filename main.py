@@ -58,5 +58,9 @@ def create_file(body: str, filename: str = "body.txt") -> None:
     return
 
 
+def convert_csv_banzuke() -> dict:
+    return {}
+
+
 if __name__ == "__main__":
     main()
