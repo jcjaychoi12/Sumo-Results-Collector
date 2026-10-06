@@ -62,10 +62,9 @@ def create_file(body: str, filename: str = "body.txt") -> None:
 
 def convert_csv_banzuke(file_path: Path) -> dict:
     with open(file_path, newline="", encoding="utf-8") as file:
-        reader = csv.reader(file)
-        headers = next(reader)
+        reader = csv.DictReader(file)
         for row in reader:
-            print(row)
+            print(row["東"])
     return {}
 
 
