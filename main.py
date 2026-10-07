@@ -44,7 +44,7 @@ def main() -> None:
         for rks in rikishi_list:
             rks_entry = ",".join([rks["shikona"], rks["shushin"], rks["heya"], rks["status"]])
             rikishi_csv += rks_entry + "\n"
-        print(rikishi_csv)
+        create_file(rikishi_csv, "current_banzuke_formatted.csv")
     except Exception as e:
         print(f"[Error] Failed to access {url}\n\n{e}")
     finally:
