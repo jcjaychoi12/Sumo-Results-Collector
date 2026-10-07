@@ -38,7 +38,11 @@ def main() -> None:
                 table_list.append(",".join(row_list))
         table_csv = "\n".join(table_list)
         create_file(table_csv, "current_banzuke.csv")
-        print(convert_csv_banzuke(Path(r"./localfiles/current_banzuke.csv")))
+
+        rikishi_list = convert_csv_banzuke(Path(r"./localfiles/current_banzuke.csv"))
+        rikishi_csv = "四股名,出身,部屋,昇進\n"
+        for rikishi_dict in rikishi_list:
+            pass
     except Exception as e:
         print(f"[Error] Failed to access {url}\n\n{e}")
     finally:
