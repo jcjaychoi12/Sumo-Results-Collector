@@ -41,8 +41,10 @@ def main() -> None:
 
         rikishi_list = convert_csv_banzuke(Path(r"./localfiles/current_banzuke.csv"))
         rikishi_csv = "四股名,出身,部屋,昇進\n"
-        for rikishi_dict in rikishi_list:
-            pass
+        for rks in rikishi_list:
+            rks_entry = ",".join([rks["shikona"], rks["shushin"], rks["heya"], rks["status"]])
+            rikishi_csv += rks_entry + "\n"
+        print(rikishi_csv)
     except Exception as e:
         print(f"[Error] Failed to access {url}\n\n{e}")
     finally:
