@@ -40,9 +40,9 @@ def main() -> None:
         create_file(table_csv, "current_banzuke.csv")
 
         rikishi_list = convert_csv_banzuke(Path(r"./localfiles/current_banzuke.csv"))
-        rikishi_csv = "四股名,出身,部屋,昇進\n"
+        rikishi_csv = "四股名,番付,出身,部屋,昇進\n"
         for rks in rikishi_list:
-            rks_entry = ",".join([rks["shikona"], rks["shushin"], rks["heya"], rks["status"]])
+            rks_entry = ",".join([rks["shikona"], rks["rank"], rks["shushin"], rks["heya"], rks["status"]])
             rikishi_csv += rks_entry + "\n"
         create_file(rikishi_csv, "current_banzuke_formatted.csv")
     except Exception as e:
