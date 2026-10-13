@@ -10,15 +10,15 @@ import csv
 
 def main() -> None:
     try:
-        banzuke_table = get_makuuchi_banzuke_html()
+        makuuchi_banzuke_table = get_makuuchi_banzuke_html()
 
         headers_list = []
-        for th in banzuke_table.find_all("th"):
+        for th in makuuchi_banzuke_table.find_all("th"):
             headers_list.append(th.get_text(strip=True))
         headers = ",".join(headers_list)
         
         table_list = [headers]
-        for tr in banzuke_table.find_all("tr"):
+        for tr in makuuchi_banzuke_table.find_all("tr"):
             row_list = []
             for td in tr.find_all("td"):
                 row_list.append(td.get_text(separator="::", strip=True))
