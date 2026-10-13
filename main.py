@@ -113,7 +113,11 @@ def convert_csv_banzuke(file_path: Path) -> list:
 
 
 def get_makuuchi_banzuke():
-    pass
+    url: str = "https://www.sumo.or.jp/ResultBanzuke/table/"
+    chrome_options: Options = Options()
+    chrome_options.add_argument("--headless=new")
+    chrome_options.binary_location = str(Path.home() / r"AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe")
+    driver: WebDriver = webdriver.Chrome(options=chrome_options)
 
 def get_juryo_banzuke():
     pass
