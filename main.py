@@ -9,20 +9,8 @@ import csv
 
 
 def main() -> None:
-    url: str = "https://www.sumo.or.jp/ResultBanzuke/table/"
-    chrome_options: Options = Options()
-    chrome_options.add_argument("--headless=new")
-    chrome_options.binary_location = str(Path.home() / r"AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe")
-    driver: WebDriver = webdriver.Chrome(options=chrome_options)
-
     try:
-        driver.get(url)
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "table")))
-
-        soup: BeautifulSoup = BeautifulSoup(driver.page_source, "html.parser")
-        banzuke_table = soup.find("tbody")
-        for tag in banzuke_table.find_all(True):
-            tag.attrs = {}
+        banzuke_table = get_makuuchi_banzuke_html()
 
         headers_list = []
         for th in banzuke_table.find_all("th"):
@@ -47,8 +35,6 @@ def main() -> None:
         create_file(rikishi_csv, "current_banzuke_formatted.csv")
     except Exception as e:
         print(f"[Error] Failed to access {url}\n\n{e}")
-    finally:
-        driver.quit()
 
     return
 
