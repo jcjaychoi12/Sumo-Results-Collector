@@ -112,5 +112,12 @@ def convert_csv_banzuke(file_path: Path) -> list:
     return return_list
 
 
+def get_makuuchi_banzuke():
+    pass
+
+def get_juryo_banzuke():
+    pass
+
+
 if __name__ == "__main__":
     main()
